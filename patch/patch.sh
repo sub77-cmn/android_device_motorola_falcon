@@ -8,12 +8,6 @@ if [ "$key" = 'p' ]; then
     # Space pressed, do something
 # echo [$key] is empty when SPACE is pressed # uncomment to trace
 
-patchdir="$build_root/packages/apps/CMParts" # Start patch1
-echo -e ${CL_BLU}"PATCHING $patchdir"${CL_RST}
-cd $patchdir
-git fetch http://review.cyanogenmod.org/CyanogenMod/android_packages_apps_CMParts refs/changes/68/161368/9 && git cherry-pick FETCH_HEAD
-cd $build_root # End patch1
-
 patchdir="$build_root/sdk" # Start patch1
 echo -e ${CL_BLU}"PATCHING $patchdir"${CL_RST}
 cd $patchdir
