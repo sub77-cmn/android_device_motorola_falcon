@@ -1,0 +1,26 @@
+From b4cbdc1e1d9a903b6da651a5ad6ceecbd07afb38 Mon Sep 17 00:00:00 2001
+From: John Doe <johndoe@example.co>
+Date: Sun, 18 Sep 2016 08:09:43 +0200
+Subject: [PATCH] Fix GC overhead limit exceeded
+
+Change-Id: I0f6cf836567f71fc30c6ec817ce625f1fa1d7d72
+---
+ tools/jack-admin | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tools/jack-admin b/tools/jack-admin
+index ee193fc..57734d7 100755
+--- a/tools/jack-admin
++++ b/tools/jack-admin
+@@ -451,7 +451,7 @@ case $COMMAND in
+     if [ "$RUNNING" = 0 ]; then
+       echo "Server is already running"
+     else
+-      JACK_SERVER_COMMAND="java -XX:MaxJavaStackTraceDepth=-1 -Djava.io.tmpdir=$TMPDIR $JACK_SERVER_VM_ARGUMENTS -cp $LAUNCHER_JAR $LAUNCHER_NAME"
++      JACK_SERVER_COMMAND="java -XX:MaxJavaStackTraceDepth=-1 -Xmx6G -Djava.io.tmpdir=$TMPDIR $JACK_SERVER_VM_ARGUMENTS -cp $LAUNCHER_JAR $LAUNCHER_NAME"
+       echo "Launching Jack server" $JACK_SERVER_COMMAND
+       (
+         trap "" SIGHUP
+-- 
+2.7.4
+
