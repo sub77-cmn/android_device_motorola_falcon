@@ -8,11 +8,23 @@ if [ "$key" = 'p' ]; then
     # Space pressed, do something
 # echo [$key] is empty when SPACE is pressed # uncomment to trace
 
-#patchdir="$build_root/hardware/qcom/audio" # Start patch1
-#echo -e ${CL_BLU}"PATCHING $patchdir"${CL_RST}
-#cd $patchdir
-#git fetch http://gerrit.dirtyunicorns.com/android_hardware_qcom_audio refs/changes/29/2029/1 && git cherry-pick FETCH_HEAD
-#cd $build_root # End patch1
+patchdir="$build_root/packages/apps/CMParts" # Start patch1
+echo -e ${CL_BLU}"PATCHING $patchdir"${CL_RST}
+cd $patchdir
+git fetch http://review.cyanogenmod.org/CyanogenMod/android_packages_apps_CMParts refs/changes/68/161368/9 && git cherry-pick FETCH_HEAD
+cd $build_root # End patch1
+
+patchdir="$build_root/sdk" # Start patch1
+echo -e ${CL_BLU}"PATCHING $patchdir"${CL_RST}
+cd $patchdir
+git fetch ssh://sub77@review.cyanogenmod.org:29418/CyanogenMod/cm_platform_sdk refs/changes/67/161367/7 && git cherry-pick FETCH_HEAD
+cd $build_root # End patch1
+
+patchdir="$build_root/packages/apps/Settings" # Start patch1
+echo -e ${CL_BLU}"PATCHING $patchdir"${CL_RST}
+cd $patchdir
+git fetch ssh://sub77@review.cyanogenmod.org:29418/CyanogenMod/android_packages_apps_Settings refs/changes/57/162357/1 && git cherry-pick FETCH_HEAD
+cd $build_root # End patch1
 
 echo -e ""
 echo -e ${CL_RED}"Applying patches"${CL_RST}
