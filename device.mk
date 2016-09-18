@@ -37,5 +37,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/apns-conf-cdma.xml:system/etc/apns-conf-cdma.xml
 
+# OTA
+PRODUCT_PACKAGES += \
+    OpenDelta
+
 # Inherit from msm8226-common
 $(call inherit-product, device/motorola/msm8226-common/msm8226.mk)
