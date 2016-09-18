@@ -1,0 +1,33 @@
+From e3a58f20bfe190bff78d92a67f8adfeeed21abc3 Mon Sep 17 00:00:00 2001
+From: sub77 <sub77@ymail.com>
+Date: Sun, 18 Sep 2016 14:58:52 +0200
+Subject: [PATCH] Fix sepolicy
+
+---
+ common/audioserver.te | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/common/audioserver.te b/common/audioserver.te
+index c428fd7..0946167 100644
+--- a/common/audioserver.te
++++ b/common/audioserver.te
+@@ -36,11 +36,11 @@ unix_socket_send(audioserver, mpctl, perfd)
+ unix_socket_connect(audioserver, mpctl, perfd)
+ 
+ #debugfs access to audio
+-userdebug_or_eng(`
+-typeattribute audioserver qti_debugfs_domain;
+-allow audioserver debugfs:dir r_dir_perms;
+-allow audioserver debugfs:file rw_file_perms;
+-')
++#userdebug_or_eng(`
++#typeattribute audioserver qti_debugfs_domain;
++#allow audioserver debugfs:dir r_dir_perms;
++#allow audioserver debugfs:file rw_file_perms;
++#')
+ # Allow audioserver to create socket files for audio arbitration
+ allow audioserver audio_data_file:sock_file { create setattr unlink };
+ allow audioserver audio_data_file:dir remove_name;
+-- 
+2.9.3
+
